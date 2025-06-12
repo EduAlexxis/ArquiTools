@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArquiTools - Herramientas Esenciales para Arquitectos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .tool-card h3 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: #667eea;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            font-weight: 600;
+            color: #2d3748;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .scale-visual {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ArquiTools</h1>
+            <p class="subtitle">Herramientas de cálculo esenciales para arquitectos venezolanos</p>
+        </header>
+
+        <div class="tools-grid">
+            <!-- Conversor de Escalas -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
+                    </svg>
+                    Conversor de Escalas
+                </h3>
+                <div class="input-group">
+                    <label>Escala Arquitectónica</label>
+                    <select id="scaleSelect">
+                        <option value="50">1:50</option>
+                        <option value="75">1:75</option>
+                        <option value="100">1:100</option>
+                        <option value="125">1:125</option>
+                        <option value="150">1:150</option>
+                        <option value="200">1:200</option>
+                        <option value="250">1:250</option>
+                        <option value="500">1:500</option>
+                        <option value="750">1:750</option>
+                        <option value="1000">1:1000</option>
+                        <option value="1250">1:1250</option>
+                        <option value="2500">1:2500</option>
+                        <option value="5000">1:5000</option>
+                        <option value="25">1:25</option>
+                        <option value="20">1:20</option>
+                        <option value="10">1:10</option>
+                        <option value="5">1:5</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Medida en Plano (cm)</label>
+                    <input type="number" id="drawingMeasurement" placeholder="Ingrese medida" step="0.1">
+                </div>
+                <button onclick="convertScale()">Convertir Escala</button>
+                <div class="result" id="scaleResult">Ingrese una medida del plano para convertir</div>
+            </div>
+
+            <!-- Calculadora de Área -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                    </svg>
+                    Calculadora de Área
+                </h3>
+                <div class="input-group">
+                    <label>Tipo de Figura</label>
+                    <select id="shapeType" onchange="updateAreaInputs()">
+                        <option value="rectangle">Rectángulo</option>
+                        <option value="circle">Círculo</option>
+                        <option value="triangle">Triángulo</option>
+                    </select>
+                </div>
+                <div id="areaInputs">
+                    <div class="two-column">
+                        <div class="input-group">
+                            <label>Largo (m)</label>
+                            <input type="number" id="length" placeholder="Largo" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>Ancho (m)</label>
+                            <input type="number" id="width" placeholder="Ancho" step="0.01">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="calculateArea()">Calcular Área</button>
+                <div class="result" id="areaResult">Seleccione figura e ingrese dimensiones</div>
+            </div>
+
+            <!-- Conversor de Unidades -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M7.5 4A5.5 5.5 0 0 0 2 9.5C2 12 4 14 6.5 14H16.5c2.5 0 4.5-2 4.5-4.5S19 5 16.5 5c-.3 0-.6 0-.9.1C15 3.3 13.5 2 11.7 2c-1.5 0-2.8.8-3.5 2H7.5z"/>
+                    </svg>
+                    Conversor de Unidades
+                </h3>
+                <div class="input-group">
+                    <label>Convertir De</label>
+                    <select id="fromUnit">
+                        <option value="m">Metros</option>
+                        <option value="cm">Centímetros</option>
+                        <option value="mm">Milímetros</option>
+                        <option value="km">Kilómetros</option>
+                        <option value="ft">Pies</option>
+                        <option value="in">Pulgadas</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Convertir A</label>
+                    <select id="toUnit">
+                        <option value="cm">Centímetros</option>
+                        <option value="m">Metros</option>
+                        <option value="mm">Milímetros</option>
+                        <option value="km">Kilómetros</option>
+                        <option value="ft">Pies</option>
+                        <option value="in">Pulgadas</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Valor</label>
+                    <input type="number" id="unitValue" placeholder="Ingrese valor" step="0.001">
+                </div>
+                <button onclick="convertUnits()">Convertir Unidades</button>
+                <div class="result" id="unitResult">Ingrese un valor para convertir</div>
+            </div>
+
+            <!-- Calculadora de Pendiente -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Calculadora de Pendiente
+                </h3>
+                <div class="input-group">
+                    <label>Altura (m)</label>
+                    <input type="number" id="rise" placeholder="Altura" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>Distancia Horizontal (m)</label>
+                    <input type="number" id="run" placeholder="Distancia" step="0.01">
+                </div>
+                <button onclick="calculatePitch()">Calcular Pendiente</button>
+                <div class="result" id="pitchResult">Ingrese altura y distancia horizontal</div>
+            </div>
+
+            <!-- Calculadora de Concreto -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Calculadora de Concreto
+                </h3>
+                <div class="input-group">
+                    <label>Largo (m)</label>
+                    <input type="number" id="concreteLength" placeholder="Largo" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Ancho (m)</label>
+                    <input type="number" id="concreteWidth" placeholder="Ancho" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Espesor (cm)</label>
+                    <input type="number" id="concreteThickness" placeholder="Espesor" step="1">
+                </div>
+                <button onclick="calculateConcrete()">Calcular Concreto</button>
+                <div class="result" id="concreteResult">Ingrese las dimensiones de la losa</div>
+            </div>
+
+            <!-- Calculadora de Bloques -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+                    </svg>
+                    Calculadora de Bloques
+                </h3>
+                <div class="input-group">
+                    <label>Tipo de Bloque</label>
+                    <select id="blockType">
+                        <option value="20x20x40">Bloque 20x20x40 cm</option>
+                        <option value="15x20x40">Bloque 15x20x40 cm</option>
+                        <option value="10x20x40">Bloque 10x20x40 cm</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Largo de Pared (m)</label>
+                    <input type="number" id="wallLength" placeholder="Largo" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Alto de Pared (m)</label>
+                    <input type="number" id="wallHeight" placeholder="Alto" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Área de Ventanas/Puertas (m²)</label>
+                    <input type="number" id="openings" placeholder="Área a descontar" value="0" step="0.1">
+                </div>
+                <button onclick="calculateBlocks()">Calcular Bloques</button>
+                <div class="result" id="blocksResult">Ingrese las dimensiones de la pared</div>
+            </div>
+
+            <!-- Calculadora de Mortero -->
+            <div class="tool-card">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z"/>
+                    </svg>
+                    Calculadora de Mortero
+                </h3>
+                <div class="input-group">
+                    <label>Área de Pared (m²)</label>
+                    <input type="number" id="mortarArea" placeholder="Área total" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Espesor de Friso (cm)</label>
+                    <input type="number" id="mortarThickness" placeholder="Espesor" value="1.5" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Proporción Cemento:Arena</label>
+                    <select id="mortarRatio">
+                        <option value="1:3">1:3 (Friso exterior)</option>
+                        <option value="1:4">1:4 (Friso interior)</option>
+                        <option value="1:5">1:5 (Pañete)</option>
+                    </select>
+                </div>
+                <button onclick="calculateMortar()">Calcular Mortero</button>
+                <div class="result" id="mortarResult">Ingrese el área a frisar</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2025 ArquiTools - Herramientas para arquitectos venezolanos</p>
+        </footer>
+    </div>
+
+    <script>
+        // Conversor de Escalas
+        function convertScale() {
+            const scale = parseFloat(document.getElementById('scaleSelect').value);
+            const drawing = parseFloat(document.getElementById('drawingMeasurement').value);
+            
+            if (isNaN(drawing)) {
+                document.getElementById('scaleResult').innerHTML = 'Por favor ingrese una medida válida';
+                return;
+            }
+            
+            const realSize = drawing * scale; // en cm
+            const meters = realSize / 100;
+            
+            document.getElementById('scaleResult').innerHTML = 
+                `<strong>Tamaño real:</strong> ${meters.toFixed(2)} m (${realSize.toFixed(1)} cm)`;
+        }
+
+        // Calculadora de Área
+        function updateAreaInputs() {
+            const shape = document.getElementById('shapeType').value;
+            const inputsDiv = document.getElementById('areaInputs');
+            
+            if (shape === 'rectangle') {
+                inputsDiv.innerHTML = `
+                    <div class="two-column">
+                        <div class="input-group">
+                            <label>Largo (m)</label>
+                            <input type="number" id="length" placeholder="Largo" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>Ancho (m)</label>
+                            <input type="number" id="width" placeholder="Ancho" step="0.01">
+                        </div>
+                    </div>
+                `;
+            } else if (shape === 'circle') {
+                inputsDiv.innerHTML = `
+                    <div class="input-group">
+                        <label>Radio (m)</label>
+                        <input type="number" id="radius" placeholder="Radio" step="0.01">
+                    </div>
+                `;
+            } else if (shape === 'triangle') {
+                inputsDiv.innerHTML = `
+                    <div class="two-column">
+                        <div class="input-group">
+                            <label>Base (m)</label>
+                            <input type="number" id="base" placeholder="Base" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>Altura (m)</label>
+                            <input type="number" id="height" placeholder="Altura" step="0.01">
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function calculateArea() {
+            const shape = document.getElementById('shapeType').value;
+            let area = 0;
+            
+            if (shape === 'rectangle') {
+                const length = parseFloat(document.getElementById('length').value);
+                const width = parseFloat(document.getElementById('width').value);
+                if (isNaN(length) || isNaN(width)) {
+                    document.getElementById('areaResult').innerHTML = 'Por favor ingrese dimensiones válidas';
+                    return;
+                }
+                area = length * width;
+            } else if (shape === 'circle') {
+                const radius = parseFloat(document.getElementById('radius').value);
+                if (isNaN(radius)) {
+                    document.getElementById('areaResult').innerHTML = 'Por favor ingrese un radio válido';
+                    return;
+                }
+                area = Math.PI * radius * radius;
+            } else if (shape === 'triangle') {
+                const base = parseFloat(document.getElementById('base').value);
+                const height = parseFloat(document.getElementById('height').value);
+                if (isNaN(base) || isNaN(height)) {
+                    document.getElementById('areaResult').innerHTML = 'Por favor ingrese dimensiones válidas';
+                    return;
+                }
+                area = 0.5 * base * height;
+            }
+            
+            document.getElementById('areaResult').innerHTML = 
+                `<strong>Área:</strong> ${area.toFixed(2)} m²`;
+        }
+
+        // Conversor de Unidades
+        function convertUnits() {
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            const value = parseFloat(document.getElementById('unitValue').value);
+            
+            if (isNaN(value)) {
+                document.getElementById('unitResult').innerHTML = 'Por favor ingrese un valor válido';
+                return;
+            }
+            
+            // Convertir a metros primero
+            const conversions = {
+                'm': 1,
+                'cm': 0.01,
+                'mm': 0.001,
+                'km': 1000,
+                'ft': 0.3048,
+                'in': 0.0254
+            };
+            
+            const meters = value * conversions[fromUnit];
+            const result = meters / conversions[toUnit];
+            
+            const unitNames = {
+                'm': 'metros',
+                'cm': 'centímetros',
+                'mm': 'milímetros',
+                'km': 'kilómetros',
+                'ft': 'pies',
+                'in': 'pulgadas'
+            };
+            
+            document.getElementById('unitResult').innerHTML = 
+                `<strong>${value} ${unitNames[fromUnit]} = ${result.toFixed(4)} ${unitNames[toUnit]}</strong>`;
+        }
+
+        // Calculadora de Pendiente
+        function calculatePitch() {
+            const rise = parseFloat(document.getElementById('rise').value);
+            const run = parseFloat(document.getElementById('run').value);
+            
+            if (isNaN(rise) || isNaN(run)) {
+                document.getElementById('pitchResult').innerHTML = 'Por favor ingrese valores válidos';
+                return;
+            }
+            
+            const slope = rise / run;
+            const percentage = slope * 100;
+            const angle = Math.atan(slope) * (180 / Math.PI);
+            
+            document.getElementById('pitchResult').innerHTML = 
+                `<strong>Pendiente:</strong> ${percentage.toFixed(1)}% <br><strong>Ángulo:</strong> ${angle.toFixed(1)}°`;
+        }
+
+        // Calculadora de Concreto
+        function calculateConcrete() {
+            const length = parseFloat(document.getElementById('concreteLength').value);
+            const width = parseFloat(document.getElementById('concreteWidth').value);
+            const thickness = parseFloat(document.getElementById('concreteThickness').value);
+            
+            if (isNaN(length) || isNaN(width) || isNaN(thickness)) {
+                document.getElementById('concreteResult').innerHTML = 'Por favor ingrese dimensiones válidas';
+                return;
+            }
+            
+            const volume = length * width * (thickness / 100); // Convertir cm a m
+            const bags = Math.ceil(volume * 8); // Aproximadamente 8 sacos por m³
+            
+            document.getElementById('concreteResult').innerHTML = 
+                `<strong>Volumen:</strong> ${volume.toFixed(2)} m³<br><strong>Sacos de cemento:</strong> ${bags} sacos aproximadamente`;
+        }
+
+        // Calculadora de Bloques
+        function calculateBlocks() {
+            const blockType = document.getElementById('blockType').value;
+            const wallLength = parseFloat(document.getElementById('wallLength').value);
+            const wallHeight = parseFloat(document.getElementById('wallHeight').value);
+            const openings = parseFloat(document.getElementById('openings').value) || 0;
+            
+            if (isNaN(wallLength) || isNaN(wallHeight)) {
+                document.getElementById('blocksResult').innerHTML = 'Por favor ingrese dimensiones válidas';
+                return;
+            }
+            
+            const wallArea = (wallLength * wallHeight) - openings;
+            
+            // Bloques por m² según tipo
+            const blocksPerM2 = {
+                '20x20x40': 12.5,
+                '15x20x40': 12.5,
+                '10x20x40': 12.5
+            };
+            
+            const totalBlocks = Math.ceil(wallArea * blocksPerM2[blockType]);
+            const extraBlocks = Math.ceil(totalBlocks * 0.05); // 5% extra por desperdicio
+            
+            document.getElementById('blocksResult').innerHTML = 
+                `<strong>Área de pared:</strong> ${wallArea.toFixed(2)} m²<br><strong>Bloques necesarios:</strong> ${totalBlocks} + ${extraBlocks} extra = ${totalBlocks + extraBlocks} bloques`;
+        }
+
+        // Calculadora de Mortero
+        function calculateMortar() {
+            const area = parseFloat(document.getElementById('mortarArea').value);
+            const thickness = parseFloat(document.getElementById('mortarThickness').value);
+            const ratio = document.getElementById('mortarRatio').value;
+            
+            if (isNaN(area) || isNaN(thickness)) {
+                document.getElementById('mortarResult').innerHTML = 'Por favor ingrese valores válidos';
+                return;
+            }
+            
+            const volume = area * (thickness / 100); // Convertir cm a m
+            
+            // Cálculo según proporción
+            let cementBags, sandM3;
+            if (ratio === '1:3') {
+                cementBags = Math.ceil(volume * 7);
+                sandM3 = volume * 0.5;
+            } else if (ratio === '1:4') {
+                cementBags = Math.ceil(volume * 6);
+                sandM3 = volume * 0.6;
+            } else { // 1:5
+                cementBags = Math.ceil(volume * 5);
+                sandM3 = volume * 0.7;
+            }
+            
+            document.getElementById('mortarResult').innerHTML = 
+                `<strong>Volumen de mortero:</strong> ${volume.toFixed(2)} m³<br><strong>Cemento:</strong> ${cementBags} sacos<br><strong>Arena:</strong> ${sandM3.toFixed(2)} m³`;
+        }
+
+        // Inicializar
+        updateAreaInputs();
+    </script>
+</body>
+</html>
